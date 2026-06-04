@@ -1,0 +1,100 @@
+[
+  {
+    "case_id": "ING-001",
+    "name": "Valid minimal incident",
+    "input": {
+      "title": "API timeout spike",
+      "description": "Gateway timeouts after deploy",
+      "severity": "P2",
+      "affected_system": "api-gateway",
+      "signals": ["ERROR api-gateway: upstream timeout", "ALERT latency p99 > 2s"]
+    },
+    "expect": "pass"
+  },
+  {
+    "case_id": "ING-002",
+    "name": "Missing title — normaliser fallback",
+    "input": {
+      "description": "Service degraded",
+      "severity": "high",
+      "affected_system": "billing",
+      "signals": ["WARN billing: slow queries"]
+    },
+    "expect": "pass"
+  },
+  {
+    "case_id": "ING-003",
+    "name": "Empty signals and empty description",
+    "input": {
+      "title": "Mystery outage",
+      "description": "",
+      "severity": "P1",
+      "affected_system": "unknown",
+      "signals": []
+    },
+    "expect": "fail",
+    "expect_error_contains": "no operational signals"
+  },
+  {
+    "case_id": "ING-004",
+    "name": "Invalid severity coerced",
+    "input": {
+      "title": "Disk full",
+      "description": "Volume at 99%",
+      "severity": "critical",
+      "affected_system": "storage",
+      "signals": ["ALERT disk usage 99% on node-1"]
+    },
+    "expect": "pass"
+  },
+  {
+    "case_id": "ING-005",
+    "name": "Signals as newline string",
+    "input": {
+      "title": "DB pool exhausted",
+      "description": "Connections waiting",
+      "severity": "P1",
+      "affected_system": "postgres",
+      "signals": "ERROR app: pool exhausted\nERROR app: waiting=40"
+    },
+    "expect": "pass"
+  },
+  {
+    "case_id": "ING-006",
+    "name": "Non-dict payload rejected",
+    "input": "not-a-dict",
+    "expect": "fail",
+    "expect_error_contains": "must be a JSON object"
+  },
+  {
+    "case_id": "ING-007",
+    "name": "Deployment notes only — insufficient signals",
+    "input": {
+      "title": "Post-deploy check",
+      "description": "",
+      "severity": "P3",
+      "affected_system": "checkout",
+      "signals": [],
+      "deployment_notes": "Released v3.0.1 at 10:00"
+    },
+    "expect": "fail",
+    "expect_error_contains": "no operational signals"
+  },
+  {
+    "case_id": "ING-008",
+    "name": "Enterprise UI shape (streamlit fields)",
+    "input": {
+      "title": "Revenue Dashboard Unavailable",
+      "description": "Dashboard failing since 14:32 UTC",
+      "severity": "P1",
+      "affected_system": "revenue-dashboard",
+      "signals": [
+        "ERROR api-gateway: Connection timeout to revenue-service",
+        "ERROR revenue-service: Database connection pool exhausted"
+      ],
+      "deployment_notes": "revenue-service v2.8.4 deployed 14:15 UTC",
+      "source_dataset": "streamlit"
+    },
+    "expect": "pass"
+  }
+]

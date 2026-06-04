@@ -1,0 +1,13 @@
+{
+  "title": "Stale cache on product catalog — P3",
+  "description": "Some product pages show outdated prices for ~15 minutes after catalog updates. Core purchase flow unaffected.",
+  "severity": "P3",
+  "affected_system": "catalog-cache",
+  "signals": [
+    "WARN catalog-cache: TTL miss rate 8% (baseline 1%)",
+    "INFO catalog-service: refresh job completed with 3 skipped partitions",
+    "ALERT catalog-cache: cache age p95 22m (threshold 10m)"
+  ],
+  "deployment_notes": null,
+  "source_dataset": "testcase_p3"
+}

@@ -1,0 +1,54 @@
+# ─── Secrets (never commit) ───────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+
+# ─── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+ENV/
+
+# ─── Logs & runtime reports ───────────────────────────────────────────────────
+logs/
+*.log
+reports/
+
+# ─── Data: generated / machine-local (folder skeleton tracked via .gitkeep) ──
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/chromadb/
+data/embedding_cache/
+data/governance/
+data/eval/
+
+# Keep committed sample; ignore large generated synthetic pool
+data/synthetic/*
+!data/synthetic/.gitkeep
+!data/synthetic/sample_incident.json
+
+# ─── IDE & OS ─────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Jupyter ──────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+notebook/.ipynb_checkpoints/
+
+# ─── Streamlit local secrets (if used) ────────────────────────────────────────
+.streamlit/secrets.toml

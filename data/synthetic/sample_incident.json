@@ -1,0 +1,18 @@
+{
+  "incident_id": "INC-2024-001",
+  "title": "Revenue Dashboard Unavailable — P1",
+  "description": "Revenue dashboard failing to load for all users since 14:32 UTC. Multiple teams reporting inability to access real-time metrics.",
+  "severity": "P1",
+  "affected_system": "revenue-dashboard",
+  "signals": [
+    "ERROR 2024-01-15 14:32:01 api-gateway: Connection timeout to revenue-service (timeout=30s)",
+    "ERROR 2024-01-15 14:32:03 revenue-service: Database connection pool exhausted (pool_size=20, waiting=47)",
+    "WARN  2024-01-15 14:28:00 deployment-service: revenue-service v2.8.4 deployed successfully",
+    "ERROR 2024-01-15 14:33:11 revenue-service: Max connections exceeded on postgres-primary",
+    "ALERT 2024-01-15 14:35:00 monitoring: revenue-dashboard error rate 94% (threshold: 5%)"
+  ],
+  "deployment_notes": "revenue-service v2.8.4 deployed at 14:28 UTC. Changes: updated connection pool configuration, bumped dependencies.",
+  "created_at": "2024-01-15T14:35:00Z",
+  "source_dataset": "synthetic",
+  "true_root_cause": "Connection pool exhaustion caused by misconfigured pool_size in v2.8.4 deployment"
+}

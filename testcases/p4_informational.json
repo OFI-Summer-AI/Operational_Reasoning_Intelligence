@@ -1,0 +1,12 @@
+{
+  "title": "Planned certificate rotation — P4",
+  "description": "Scheduled rotation of TLS certificates on internal admin portal. No customer-facing impact expected.",
+  "severity": "P4",
+  "affected_system": "admin-portal",
+  "signals": [
+    "INFO cert-manager: renewal window started for admin-portal.internal",
+    "INFO admin-portal: health check OK during rotation dry-run"
+  ],
+  "deployment_notes": "Change ticket CHG-8842 approved for Sunday 02:00 UTC maintenance window",
+  "source_dataset": "testcase_p4"
+}

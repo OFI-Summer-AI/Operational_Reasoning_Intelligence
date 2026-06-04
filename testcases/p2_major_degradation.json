@@ -1,0 +1,14 @@
+{
+  "title": "Checkout API elevated latency — P2",
+  "description": "Checkout completion time increased from ~400ms to 3–8s since 09:10 UTC. Payments still succeeding but cart abandonment rising.",
+  "severity": "P2",
+  "affected_system": "checkout-api",
+  "signals": [
+    "WARN  checkout-api: p99 latency 7.2s (baseline 0.4s)",
+    "ERROR payment-service: downstream fraud-scoring timeout (retries=3)",
+    "ALERT checkout-api: error rate 12% (threshold 5%)",
+    "INFO load-balancer: 2/8 checkout-api pods unhealthy"
+  ],
+  "deployment_notes": "fraud-scoring-rules v1.9.2 rolled out 08:45 UTC",
+  "source_dataset": "testcase_p2"
+}

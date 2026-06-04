@@ -1,0 +1,8 @@
+{
+  "title": "Unknown outage — missing signals",
+  "description": "",
+  "severity": "P1",
+  "affected_system": "unknown",
+  "signals": [],
+  "source_dataset": "testcase_ingestion_fail"
+}
